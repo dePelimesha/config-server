@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: main
+  config:
+    bus:
+      enabled: true
+    stream:
+      kafka:
+        binder:
+          zkNodes: localhost:2181
+          brokers: localhost:9092
+    import: optional:configserver:http://localhost:8888
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: env, info, metrics, prometheus, refresh
+  endpoint:
+    env:
+      enabled: true
+    refresh:
+      enabled: true
+    busrefresh:
+      enabled: true

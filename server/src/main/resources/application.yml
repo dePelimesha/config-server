@@ -1,0 +1,32 @@
+server:
+  port: 8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: env, info, metrics, prometheus
+  endpoint:
+    env:
+      enabled: true
+
+spring:
+  application:
+    name: server
+  cloud:
+    bus:
+      id: server
+      enabled: true
+    stream:
+      kafka:
+        binder:
+          zkNodes: localhost:2181
+          brokers: localhost:9092
+    config:
+      server:
+        git:
+          uri: git@github.com:dePelimesha/config-store.git
+          search-paths: "{application}"
+          ignoreLocalSshSettings: true
+          passphrase: phrase
+          private-key: key
